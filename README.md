@@ -1,7 +1,7 @@
 # Toko - KU
-Toko-Ku adalah aplikasi manajemen stok gudang untuk transaksi penjualan dan pembelian yang dikembangkan dengan Laravel 5.5 dan dukungan dari Bootstrap 4. Dikembangkan oleh Moch Diki Widianto (Co-Founder BaduyTech Solutions)
+Toko-KU adalah aplikasi manajemen stok gudang untuk transaksi penjualan dan pembelian yang dikembangkan dengan Laravel 5.5 dan dukungan dari Bootstrap 4.
 ## Kebutuhan Sistem
-Mengacu pada aturan pada dokumentasi [laravel-5.5] dan [bootstrap-4]
+Mengacu pada aturan dokumentasi [laravel-5.5] dan [bootstrap-4]
 ## Instalasi
 Langkah awal, _clonning_ dari repositori:
 ```sh
@@ -13,7 +13,15 @@ DB_DATABASE=homestead
 DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
-Setelah itu simpan dan pastikan nama file hanya berupa ekstensi ```.env```. Lanjutkan dengan masuk kedalam folder tokoku lalu mulai dengan migrasi basis data dengan cara:
+Setelah itu simpan dan pastikan nama file hanya berupa ekstensi ```.env```. Lanjutkan dengan masuk kedalam folder **tokoku** dan mulai melakukan proses pembaharuan composer dengan cara:
+```sh
+$ composer update
+```
+Jangan lupa untuk melakukan _generate key_ setelah selesai proses pembaharuan composer selesai, perintahnya seperti berikut:
+```sh
+$ php artisan key:generate
+```
+Lanjutkan dengan melakukan migrasi tabel kedalam basis data dengan cara:
 ```sh
 $ php artisan migrate --seed
 ```
