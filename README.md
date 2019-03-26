@@ -17,6 +17,9 @@ Setelah itu simpan dan pastikan nama file hanya berupa ekstensi ```.env```. Lanj
 ```sh
 $ php artisan migrate --seed
 ```
+## Tampilan
+![alt text](https://github.com/dikiwidia/tokoku/blob/dev/screenshot.png)
+
 ## Lisensi
 MIT
 
