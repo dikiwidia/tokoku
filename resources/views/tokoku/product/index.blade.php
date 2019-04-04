@@ -8,9 +8,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-4">
-                <a href="{{route('pdCreate')}}" class="btn btn-primary">Buat Baru</a>
+                @if(session()->has('status'))
+                <div id="alert" class="alert alert-success" role="alert">
+                    {{session()->get('status')}}
+                </div>
+                @elseif(session()->has('errors'))
+                <div id="alert" class="alert alert-danger" role="alert">
+                    {{session()->get('errors')}}
+                </div>
+                @endif
             </div>
-            <div class="table-responsive">
+            <div class="col-md-12 mb-4">
+                <a href="{{route('pdCreate')}}" class="btn btn-primary">Buat Baru</a>
+                <a href="#importConfirm" type="button" class="btn btn-warning import">Impor Data</a>
+                <a href="{{route('pdExport')}}" target="_blank" type="button" class="btn btn-success">Ekspor Data</a>
+                <a href="#deleteAllConfirm" type="button" class="btn btn-danger deleteAll"><span class="fa fa-trash"></span> Hapus</a>
+            </div>
+            <div class="table-responsive mb-4">
                 <table id="dataTables" class="table table-striped table-sm">
                     <thead>
                     <tr>
@@ -61,8 +75,52 @@
                 <input type="hidden" name="id" value="" class="modalDataValue">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-danger">Hapus</button>
+            </div>
+        </div>
+        {{csrf_field()}}
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="importConfirm" role="dialog">
+    <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <form method="POST" action="{{route('pdImport')}}" enctype="multipart/form-data">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Impor Data (Ekstensi: xls)</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="file" name="file" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Unggah</button>
+            </div>
+        </div>
+        {{csrf_field()}}
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteAllConfirm" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <form method="POST" action="{{route('pdDeleteAll')}}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Semua Data</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Anda yakin ingin menghapus seluruh data ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger">Ya</button>
             </div>
         </div>
         {{csrf_field()}}

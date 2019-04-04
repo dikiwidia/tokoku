@@ -7,7 +7,22 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="table-responsive">
+            <div class="col-md-12 mb-4">
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lokasi Gudang
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{route('wsIndex')}}">SEMUA LOKASI</a>
+                        @if($data['warehouse']->count() > 0)
+                        @foreach($data['warehouse'] as $item)
+                        <a class="dropdown-item" href="{{route('wsSortByWh',[$item->id])}}">{{$item->name}}</a>
+                        @endforeach
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mb-4">
                 <table id="dataTables" class="table table-striped table-sm">
                     <thead>
                     <tr>
@@ -16,7 +31,7 @@
                         <th>Deskripsi Barang</th>
                         <th>Harga Satuan</th>
                         <th>Stok Minimum</th>
-                        <th>SO Periode ini</th>
+                        <th>Lokasi</th>
                         <th>Total Stok</th>
                         <th>Status</th>
                     </tr>
@@ -34,7 +49,7 @@
                         <td>{{$item[0]->product->name}}</td>
                         <td>{{$item[0]->product->price}}</td>
                         <td>{{$item[0]->product->warn_stock}}</td>
-                        <td>{{$item[0]->qty}}</td>
+                        <td>{{$item[0]->warehouse_id == NULL ? '-':$item[0]->warehouse->name}}</td>
                         <td>{{$item[0]->total_stock()}}</td>
                         <td>
                             @if($item[0]->total_stock() <= $item[0]->product->warn_stock)

@@ -27,14 +27,18 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{route('home')}}" style="font-family:'Tokoku'">Toko-KU</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{{ route('logout') }}"
+                <a class="nav-link" href="{{ url('/logout') }}">
+                Keluar</a>
+            </li>
+            {{-- <li class="nav-item text-nowrap">
+                <a class="nav-link" href="{{ url('/logout') }}"
                 onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                 Keluar</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
-            </li>
+            </li> --}}
         </ul>
     </nav>
 
@@ -95,12 +99,12 @@
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('periodeIndex') }}"><span class="fa fa-calendar-alt fa-fw"></span> Periode</a>
+                        <a class="nav-link {{Request::segment(1) == 'periode' ? 'active':''}}" href="{{ route('periodeIndex') }}"><span class="fa fa-calendar-alt fa-fw"></span> Periode</a>
                     </li>
                 </ul>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('passwordChange') }}"><span class="fa fa-key fa-fw"></span> Ubah Sandi</a>
+                        <a class="nav-link {{Request::segment(1) == 'password' ? 'active':''}}" href="{{ route('passwordChange') }}"><span class="fa fa-key fa-fw"></span> Ubah Sandi</a>
                     </li>
                 </ul>
             </div>
@@ -113,6 +117,8 @@
 ================================================== -->
 <!-- Jquery -->
 <script src="{{ asset('dist/vendor/jquery/jquery.min.js') }}"></script>
+<!-- Popper JS -->
+<script src="{{ asset('dist/vendor/popper/popper.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('dist/js/bootstrap.min.js') }}"></script>
 <!-- Data Tables -->
@@ -149,6 +155,24 @@ $(document).on("click", ".delete", function (e) {
     var valueData   = _self.data('value');
     $(".modalDataText").text(textData);
     $(".modalDataValue").val(valueData);
+
+    $(_self.attr('href')).modal('show');
+});
+$("#alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#alert").slideUp(3000);
+});
+</script>
+
+<script type="text/javascript">
+$(document).on("click", ".import", function (e) {
+    e.preventDefault();
+    var _self = $(this);
+
+    $(_self.attr('href')).modal('show');
+});
+$(document).on("click", ".deleteAll", function (e) {
+    e.preventDefault();
+    var _self = $(this);
 
     $(_self.attr('href')).modal('show');
 });

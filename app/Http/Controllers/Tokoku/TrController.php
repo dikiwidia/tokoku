@@ -50,6 +50,7 @@ class TrController extends Controller
         $key1 = 0;
         $key2 = 0;
         $key3 = 0;
+        $key4 = 0;
         if($request->input('type') == 'S'){
             foreach ($request->input('product_id') as $row){
                 $wh = Transaction::where('product_id',$request->input('product_id.'.$key1++))->where('periode_id',$this->periode->id)->where('type','SO')->first();
@@ -61,7 +62,7 @@ class TrController extends Controller
                     'type'         => $request->input('type'),
                     'product_id'   => $request->input('product_id.'.$key2++),
                     'qty'          => $request->input('qty.'.$key3++)*-1,
-                    'price'        => 0,
+                    'price'        => $request->input('price.'.$key4++),
                     'warehouse_id' => $wh->warehouse->id,
                     'periode_id'   => $this->periode->id
                 ];
@@ -77,7 +78,7 @@ class TrController extends Controller
                     'type'         => $request->input('type'),
                     'product_id'   => $request->input('product_id.'.$key2++),
                     'qty'          => $request->input('qty.'.$key3++),
-                    'price'        => 0,
+                    'price'        => $request->input('price.'.$key4++),
                     'warehouse_id' => $wh->warehouse->id,
                     'periode_id'   => $this->periode->id
                 ];

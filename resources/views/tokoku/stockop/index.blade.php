@@ -10,7 +10,7 @@
             <div class="col-md-12 mb-4">
                 <a href="{{route('soCreate')}}" class="btn btn-primary">Buat Baru</a>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive mb-4">
                 <table id="dataTables" class="table table-striped table-sm">
                     <thead>
                     <tr>
@@ -20,13 +20,14 @@
                         <th>Harga Satuan</th>
                         <th>Stok Minimum</th>
                         <th>SO Periode ini</th>
+                        <th>Lokasi</th>
                         <th>Opsi</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if(count($data['parse']) == 0)
                     <tr>
-                        <td colspan="6"> No Data </td>
+                        <td colspan="8"> No Data </td>
                     </tr>
                     @else
                     @foreach ($data['parse'] as $item)
@@ -37,6 +38,7 @@
                         <td>{{$item->product->price}}</td>
                         <td>{{$item->product->warn_stock}}</td>
                         <td>{{$item->qty}}</td>
+                        <td>{{$item->warehouse_id == NULL ? '-':$item->warehouse->name}}</td>
                         <td><div class="btn-group" role="group" aria-label="Grup"><a href="{{route('soEdit',[$item->id])}}" type="button" class="btn btn-info btn-sm">Ubah</a><a href="#deleteConfirm" type="button" class="btn btn-danger btn-sm delete" data-text="{{$item->product->name}}" data-value="{{$item->id}}">Hapus</a></div></td>
                     </tr>
                     @endforeach

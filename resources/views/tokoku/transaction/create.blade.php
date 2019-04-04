@@ -23,8 +23,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 mb-3">
+            <div class="col-md-8 mb-3">
                 <label class="h4"><u>BARANG</u></label>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label class="h4"><u>PRICE</u></label>
             </div>
             <div class="col-md-2 mb-3">
                 <label class="h4"><u>QTY</u></label>
@@ -32,17 +35,20 @@
         </div>
         <div class="clone">
         <div class="row input_fields_wrap">
-            <div class="col-md-10 mb-3">
+            <div class="col-md-8 mb-3">
                 <select class="form-control" name="product_id[]" required>
                     @if ($data['product']->count() == 0)
                         <option value="">Belum Ada Satuan Barang</option>
                     @else
                         <option value="">-- Pilih --</option>
                         @foreach ($data['product'] as $opt)
-                            <option value="{{$opt->product_id}}">{{$opt->product->code}} | {{$opt->product->name}} | STOK :{{$opt->total_stock()}}</option>
+                            <option value="{{$opt->product_id}}">{{$opt->product->code}} | {{$opt->product->name}} | STOK :{{$opt->total_stock()}} | Rp {{number_format($opt->product->price,2)}}</option>
                         @endforeach
                     @endif
                 </select>
+            </div>
+            <div class="col-md-2 mb-3">
+                <input type="number" name="price[]" value="0" class="form-control" required>
             </div>
             <div class="col-md-2 mb-3">
                 <input type="text" name="qty[]" class="form-control" required>
@@ -51,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col md-12">
-                <button class="btn btn-danger remove_field">Hapus</button>
+                <a href="#" class="btn btn-danger remove_field">Hapus</a>
                 <button class="btn btn-primary add_field_button">Tambah Barang</button>
                 <button type="submit" class="btn btn-success">Proses</button>
             </div>
