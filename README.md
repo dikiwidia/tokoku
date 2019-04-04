@@ -1,7 +1,7 @@
 # Toko - KU
 Toko-KU adalah aplikasi manajemen stok gudang untuk transaksi penjualan dan pembelian yang dikembangkan dengan Laravel 5.5 dan dukungan dari Bootstrap 4.
 ## Kebutuhan Sistem
-Mengacu pada aturan dokumentasi [laravel-5.5] dan [bootstrap-4]
+Mengacu pada aturan dokumentasi [laravel-5.2] dan [bootstrap-4]
 ## Instalasi
 Langkah awal, _clonning_ dari repositori:
 ```sh
@@ -31,5 +31,5 @@ $ php artisan migrate --seed
 ## Lisensi
 MIT
 
-[laravel-5.5]: <https://laravel.com/docs/5.5/#server-requirements>
+[laravel-5.2]: <https://laravel.com/docs/5.2/#server-requirements>
 [bootstrap-4]: <https://getbootstrap.com/docs/4.1/getting-started/introduction/>
