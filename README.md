@@ -1,5 +1,5 @@
 # Toko - KU
-Toko-KU adalah aplikasi manajemen stok gudang untuk transaksi penjualan dan pembelian yang dikembangkan dengan Laravel 5.5 dan dukungan dari Bootstrap 4.
+Toko-KU adalah aplikasi manajemen stok gudang untuk transaksi penjualan dan pembelian yang dikembangkan dengan Laravel 5.2 dan dukungan dari Bootstrap 4.
 ## Kebutuhan Sistem
 Mengacu pada aturan dokumentasi [laravel-5.2] dan [bootstrap-4]
 ## Instalasi
