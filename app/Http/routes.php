@@ -2,12 +2,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
 |
 */
 
@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
+Route::auth();
 
+//Route::get('/home', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Produk
@@ -26,6 +27,9 @@ Route::get('/product/edit/{id}','Tokoku\ProductController@edit')->name('pdEdit')
 Route::post('/product/store','Tokoku\ProductController@store')->name('pdStore');
 Route::put('/product/update/{id}','Tokoku\ProductController@update')->name('pdUpdate');
 Route::delete('/product/delete','Tokoku\ProductController@delete')->name('pdDelete');
+Route::post('/product/import','Tokoku\ProductController@import')->name('pdImport');
+Route::post('/product/delete_all','Tokoku\ProductController@deleteAll')->name('pdDeleteAll');
+Route::get('/product/export','Tokoku\ProductController@export')->name('pdExport');
 
 //Gudang
 Route::get('/warehouse','Tokoku\WhController@index')->name('whIndex');
@@ -59,6 +63,7 @@ Route::delete('/stockopname/delete','Tokoku\SoController@delete')->name('soDelet
 
 //Laporan Stok
 Route::get('/stockreport','Tokoku\WsController@index')->name('wsIndex');
+Route::get('/stockreport/{id}','Tokoku\WsController@sortByWarehouse')->name('wsSortByWh');
 
 //Ubah Sandi
 Route::get('/password','Tokoku\PasswordController@index')->name('passwordChange');

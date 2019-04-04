@@ -33,7 +33,7 @@
     <link href="{{ asset('dist/css/custom/signin.css') }}" rel="stylesheet">
 </head>
 <body class="text-center">
-    <form class="form-signin" method="POST" action="{{ route('login') }}" autocomplete="off">
+    <form class="form-signin" method="POST" action="{{ url('/login') }}" autocomplete="off">
         {{ csrf_field() }}
         <h1 class="h3 mb-3 font-weight-normal" style="font-family:'Tokoku'; color:cornsilk">Toko-KU</h1>
         <label for="inputEmail" class="sr-only">Email</label>

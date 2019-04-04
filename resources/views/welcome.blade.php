@@ -1,13 +1,11 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="id">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Created by Moch Diki Widianto, Powered By Bootstrap and Laravel">
     <meta name="author" content="Moch Diki Widianto">
-    <meta name="generator" content="Jekyll v3.8.5">
     <title>Toko-KU</title>
-
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('dist/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Font Awesome -->

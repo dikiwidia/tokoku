@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <label>Stok Minimum</label>
-                    <input type="text" name="warn_stock" class="form-control" value="{{old('warn_stock')}}" maxlength="11" required>
+                    <input type="number" name="warn_stock" class="form-control" value="{{old('warn_stock')}}" maxlength="11" required>
                 </div>
                 <div class="col-md-12 mb-4">
                     <label>Satuan Barang</label>

@@ -19,6 +19,7 @@
                         <th>Kode Barang</th>
                         <th>Deskripsi Barang</th>
                         <th>Status</th>
+                        <th>Hrg. Jual</th>
                         <th>QTY</th>
                         <th>Opsi</th>
                     </tr>
@@ -36,6 +37,7 @@
                         <td>{{$item->product->code}}</td>
                         <td>{{$item->product->name}}</td>
                         <td>@if($item->type == 'S') <span class="badge badge-danger">{{$item->type == 'S' ? 'Jual':'Beli'}}</span> @else <span class="badge badge-success">{{$item->type == 'S' ? 'Jual':'Beli'}}</span> @endif </td>
+                        <td>{{number_format($item->price)}}</td>
                         <td>@if($item->type == 'S'){{$item->qty*-1}}@else{{$item->qty}}@endif</td>
                         <td><a href="#deleteConfirm" type="button" class="btn btn-danger btn-sm delete" data-text="{{$item->product->name}}" data-value="{{$item->id}}">Hapus</a></td>
                     </tr>

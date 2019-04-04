@@ -35,6 +35,16 @@ class WsController extends Controller
         $data['periode']    = $this->periode;
         $x = Transaction::where('periode_id', $this->periode->id)->where('type','SO')->get();
         $data['parse'] = $x->groupBy('product_id');
+        $data['warehouse'] = Warehouse::get();
+        $no = 1;
+        return view('tokoku.warnstock.index',compact('data','no'));
+    }
+
+    public function sortByWarehouse($id){
+        $data['periode']    = $this->periode;
+        $x = Transaction::where('periode_id', $this->periode->id)->where('type','SO')->where('warehouse_id',$id)->get();
+        $data['parse'] = $x->groupBy('product_id');
+        $data['warehouse'] = Warehouse::get();
         $no = 1;
         return view('tokoku.warnstock.index',compact('data','no'));
     }
