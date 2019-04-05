@@ -33,4 +33,15 @@ class Transaction extends Model
         $sql = DB::table('transaction')->select(DB::raw('SUM(qty) as total_stock'))->where('periode_id',$pr)->where('product_id',$this->product_id)->first();
         return $sql->total_stock;
     } 
+    public function type_stock($type)
+    {
+        $p = Periode::where('active','Y')->get();
+        if($p->count() == 1){
+            $pr = $p->first()->id;
+        } else {
+            $pr = 0;
+        }
+        $sql = DB::table('transaction')->select(DB::raw('SUM(qty) as total_stock'))->where('periode_id',$pr)->where('product_id',$this->product_id)->where('type',$type)->first();
+        return $sql->total_stock;
+    } 
 }

@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-4">
-                <div class="dropdown">
+                <div class="float-left dropdown">
                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Lokasi Gudang
                     </button>
@@ -21,6 +21,8 @@
                         @endif
                     </div>
                 </div>
+                &nbsp;
+                <a class="btn btn-info" target="_blank" href="{{Request::segment(2) == '' ? route('wsExport','all'):route('wsExport',Request::segment(2))}}">Ekspor</a>
             </div>
             <div class="table-responsive mb-4">
                 <table id="dataTables" class="table table-striped table-sm">
