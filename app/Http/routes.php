@@ -64,6 +64,7 @@ Route::delete('/stockopname/delete','Tokoku\SoController@delete')->name('soDelet
 //Laporan Stok
 Route::get('/stockreport','Tokoku\WsController@index')->name('wsIndex');
 Route::get('/stockreport/{id}','Tokoku\WsController@sortByWarehouse')->name('wsSortByWh');
+Route::get('/stockreport/{id}/export','Tokoku\WsController@export')->name('wsExport');
 
 //Ubah Sandi
 Route::get('/password','Tokoku\PasswordController@index')->name('passwordChange');

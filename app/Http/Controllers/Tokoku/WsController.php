@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 use Redirect;
+use Excel;
 
 use App\Tokoku\Transaction;
 use App\Tokoku\Periode;
@@ -47,5 +48,42 @@ class WsController extends Controller
         $data['warehouse'] = Warehouse::get();
         $no = 1;
         return view('tokoku.warnstock.index',compact('data','no'));
+    }
+
+    public function export($id){
+        $type = 'xls';
+        $name = 'Report_Stock_-_'.Carbon::now()->format('dmyHis');
+        
+        if($id == 'all'){
+            $check = Transaction::where('periode_id', $this->periode->id)->where('type','SO')->get();
+            if($check->count() == 0){
+                echo "<script>window.close();</script>";   
+            }
+        } else {
+            $check = Transaction::where('periode_id', $this->periode->id)->where('type','SO')->where('warehouse_id',$id)->get();
+            if($check->count() == 0){
+                echo "<script>window.close();</script>";   
+            }
+        }
+
+        foreach($check->groupBy('product_id') as $item){
+            $data[] = [
+                'code' => $item[0]->product->code,
+                'name' => $item[0]->product->name,
+                'price' => $item[0]->product->price,
+                'warehouse' => $item[0]->warehouse_id == NULL ? '-' : $item[0]->warehouse->name,
+                'so' => $item[0]->type_stock('SO'),
+                'buy' => $item[0]->type_stock('B'),
+                'sold' => $item[0]->type_stock('S')*-1,
+                'total_stock' => $item[0]->total_stock()
+            ];
+        }
+        //dd($data);
+        return Excel::create($name, function($excel) use ($data) {
+			$excel->sheet('products', function($sheet) use ($data){
+				$sheet->fromArray($data);
+	        });
+        })->download($type);
+        echo "<script>window.close();</script>";
     }
 }

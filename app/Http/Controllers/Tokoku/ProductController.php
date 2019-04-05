@@ -104,10 +104,10 @@ class ProductController extends Controller
             $insert = array();
             foreach ($data->get() as $element) {
                 $data = array(
-                    'code' => $element['code'],
-                    'name' => $element['name'],
-                    'warn_stock' => $element['warn_stock'],
-                    'price' => $element['price'],
+                    'code' => $element['code'] == null ? '-':$element['code'],
+                    'name' => $element['name'] == null ? '-':$element['name'],
+                    'warn_stock' => $element['warn_stock'] == null ? 0:$element['warn_stock'],
+                    'price' => $element['price'] == null ? 0:$element['price'],
                     'measure_id' => 7
                 );
                 $insert[] = $data;
