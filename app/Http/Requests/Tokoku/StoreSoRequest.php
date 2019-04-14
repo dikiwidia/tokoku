@@ -60,7 +60,7 @@ class StoreSoRequest extends FormRequest
         return [
             'product_id'    => 'required|in:'.$product,
             'warehouse_id'  => 'required|in:'.$warehouse,
-            'qty'           => 'required|min:1|numeric',
+            'qty'           => 'required|min:0|numeric',
         ];
     }
 }
